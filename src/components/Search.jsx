@@ -1,13 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Search = ({ category, setCategory, handleCategoryChange }) => {
+    const [inputValue, setInputValue] = useState(null)
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        setCategory(inputValue);
         handleCategoryChange();
-    }
-
-    const categoryChange = (e) => {
-        setCategory(e.target.value);
     }
 
     return (
@@ -25,7 +24,12 @@ const Search = ({ category, setCategory, handleCategoryChange }) => {
                         <path d="m21 21-4.3-4.3"></path>
                     </g>
                 </svg>
-                <input type="search" placeholder="Search..." className='grow' value={category} onChange={categoryChange} />
+                <input type="search"
+                    placeholder="Search..."
+                    className='grow'
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                />
             </label>
         </form>
     )
